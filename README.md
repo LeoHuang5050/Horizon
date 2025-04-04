@@ -18,7 +18,7 @@ Web3Chat is a decentralized, end-to-end encrypted messaging platform leveraging 
 
 
 ## 📌 Architecture
-- **Frontend:** React + Next.js + Web3.js
+- **Frontend:** React + Next.js + ethers.js
 - **Smart Contracts:** Solidity + Ethereum L2 (Polygon / zkSync)
 - **Messaging:** Libp2p / Waku / XMTP
 - **Storage:** IPFS (Short-term), Arweave (Long-term)
