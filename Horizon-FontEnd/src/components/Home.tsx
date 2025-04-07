@@ -15,18 +15,9 @@ const Home: React.FC = () => {
       <Container maxWidth="lg" sx={{ mt: 15, mb: 15 }}>
         <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 6, alignItems: 'center' }}>
           <Box sx={{ flex: { xs: '0 0 100%', md: '0 0 calc(50% - 24px)' } }}>
-            <Typography 
-              variant="h2" 
-              component="h1" 
-              gutterBottom 
-              sx={{ 
-                fontWeight: 'bold',
-                mb: 3
-              }}
-            >
-              Turn your ideas into{' '}
-              <Box 
-                component="span" 
+            <Typography variant="h2" component="h1" gutterBottom sx={{ fontWeight: 'bold', mb: 3 }}>
+              Connect with{' '}
+              <Box component="span" 
                 sx={{ 
                   color: 'primary.main',
                   position: 'relative',
@@ -43,16 +34,15 @@ const Home: React.FC = () => {
                   }
                 }}
               >
-                success
+                freedom
               </Box>
-              .
             </Typography>
             <Typography 
               variant="h6" 
               color="text.secondary" 
               sx={{ mb: 4 }}
             >
-              Horizon will make your product look modern and professional while saving you precious time.
+              Horizon empowers you to share ideas, build communities, and grow together in a decentralized way.
             </Typography>
             <Stack direction="row" spacing={2}>
               <Button 
