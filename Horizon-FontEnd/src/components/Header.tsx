@@ -60,17 +60,17 @@ const Header: React.FC = () => {
             } else {
                 // 如果已经签名过，直接切换账户
                 setAccount(newAccount);
-                console.log('Switched to account:', newAccount);
             }
         }
     };
 
-    const handleConnectWallet = async (newAccount: string) => {
-        if (account) {
+    const handleConnectWallet = async (newAccount: string | null = null) => {
+        // 如果已连接账户且不是切换账户的场景，则显示模态框
+        if (account && !newAccount) {
             setIsModalOpen(true);
             return;
         }
-
+        
         try {
             setLoading(true);
 
@@ -80,8 +80,12 @@ const Header: React.FC = () => {
             }
 
             const provider = new ethers.BrowserProvider(window.ethereum);
+            
+            // 请求连接钱包
+            const accounts = await provider.send("eth_requestAccounts", []);
+            const currentAccount = newAccount || accounts[0]; // 使用传入的账户或获取新账户
             const signer = await provider.getSigner();
-
+            
             // 准备签名消息
             const message = "Welcome to Horizon! Please sign this message to verify your identity.";
 
@@ -92,10 +96,10 @@ const Header: React.FC = () => {
 
                 // 验证签名
                 const recoveredAddress = ethers.verifyMessage(message, signature);
-                if (recoveredAddress.toLowerCase() === newAccount.toLowerCase()) {
-                    setAccount(newAccount);
+                if (recoveredAddress.toLowerCase() === currentAccount.toLowerCase()) {
+                    setAccount(currentAccount);
                     setHasSigned(true);
-                    console.log('Wallet connected and verified:', newAccount);
+                    console.log('Wallet connected and verified:', currentAccount);
                 } else {
                     throw new Error('Signature verification failed');
                 }
